@@ -1,0 +1,636 @@
+#1.String:-
+def longestword():
+    str=input("Enter string: ")
+    long = ""
+    i = 0
+    while(i < len(str)):
+        str1 = ""
+        if(i != len(str)):
+            while(str[i] == " "):
+                i=i+1
+        while(str[i] != " "):    
+            str1 = str1 + str[i]
+            i=i+1
+            if(i == len(str)):
+                break
+        if(len(str1)>len(long)):        
+            long = str1
+    print("Longest word is:",long) 
+
+def character():
+    str1 = input("Enter string: ")
+    char = input("Enter character: ")
+    print(str1)
+    counter = 0
+    for i in range(len(str1)):
+        if char == str1[i]:
+            counter = counter + 1
+    print("The occrurance of ",char," is: ",counter)
+
+
+def palindrome():
+    str2 = input("Enter string: ")
+    lenstr2 = len(str2)
+    j = lenstr2 - 1
+    sai = 0
+    for i in range(int(lenstr2 / 2 + 1)):
+        if (str2[i] == str2[j]):
+            j -= 1
+            sai = 1
+        else:
+            sai = 0
+            break
+            
+
+    if (sai == 1):
+        print("String is Palindrome")
+    else:
+        print("String is not Palindrome")
+
+
+def substring():
+    str1 = input("Enter string: ")
+    sub1 = input("Entersubstring: ")
+    m = len(sub1)
+    n = len(str1)
+    if(n>=m):
+        for i in range((n-m+1)):
+            I=1
+            for j in range(m):
+                if(str1[i+j]!=sub1[j]):
+                    I=0
+                    break
+            if(I==1):
+                print("Index of the substring is: ",i)
+                break
+        if(I==0):
+            print("Not found")
+
+
+def occword():
+    str = input("Enter the string:")
+    i=0
+    word_array=[]
+    count=[]
+    while(i<len(str)):
+        word=""
+        while(str[i]!=" "):
+            word+=str[i]
+            i=i+1
+            if(i==len(str)):
+                break
+        if(i!=len(str)):
+            while(str[i]==" "):
+                i=i+1
+        if(len(word_array)==0):
+            word_array.append(word)
+            count.append(1)
+        else:
+            sai=1
+            for j in range(len(word_array)):
+                if(word_array[j]==word):
+                    count[j]+=1
+                    sai=0
+                    break
+            if(sai==1):
+                word_array.append(word)
+                count.append(1)
+    for i in range(len(word_array)):
+        print("\t%15s : %d "%(word_array[i],count[i]))
+
+
+while True:
+    print("\n1. To display word with the longest length\
+           \n2. To determine the frequency of occurrence of particular character\
+           \n3. To check whether the given string is palindrome or not\
+           \n4. To display index of first appearance of the substring\
+           \n5. To count the occurance of each word in a given string\
+           \n6. Exit")
+
+    ch = int(input("Enter your choice:"))
+    if (ch == 1):
+        print("Word with the longest length ")
+        longestword()
+    elif (ch == 2):
+        print("To determine the frequency of occurrence of particular character ")
+        character()
+    elif (ch == 3):
+        print("To check whether the given string is palindrome or not ")
+        palindrome()
+    elif (ch == 4):
+        print("To display index of first appearance of the substring ") 
+        substring()
+    elif (ch == 5):
+        print("To count the occurance of each word in a given string ")
+        occword()
+    elif (ch == 6):
+        print("Exit")
+        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#2.Saddle point:-
+M=[]
+def matrix(M):
+    print("enter order of matrix:-")
+    r=int(input("enter the number of rows : "))
+    c=int(input("enter the number of columns : "))
+    print("Enter the elemnets of matrix:-\n")
+
+    for i in range(r):
+        row = []
+        for j in range(c):
+            y=int(input())
+            row.append(y)
+        M.append(row)
+    print("matrix accepted sucessfully")
+    
+    
+def display(M,r,c):
+    for i in range(r):
+        
+        for j in range(c):
+            print(M[i][j],end=" ")
+        print()
+
+def saddle_point(M,r,c): 
+    count=0;
+    for i in range(r):  
+        min=M[i][0]
+
+        ci=0
+
+        for j in range(1,c):
+            if  (min > M[i][j]):
+                min=M[i][j];
+                ci=j;           #to check if minimun element in the row is also the
+                                # maximun element in the column
+        sai=1
+        for ri in range(r):
+            if (min < M[ri][ci]):
+                sai=0
+                break
+        if (sai==1):
+            count+=1
+            print(min,"is the saddle point in the given matrix")    
+    if(count==0):
+        print("No saddle point found in the given matrix")
+    else:
+        print("saddle point found in the given matrix")    
+def main():
+    while True :
+        print("....Menu....")
+        print(" 1. To accept the matrix")
+        print(" 2. To display the Matrix")
+        print(" 3. To find saddle point of the given Matrix")
+        print(" 4. Exit ")
+        ch = int(input("Enter your Choice : "))
+        if (ch==4):
+            print("End")
+            break;
+        elif (ch==1):
+            M =[]
+            print("input matrix")
+            matrix(M)
+            r=len(M)
+            c=len(M[0])
+        elif (ch==2):
+            display(M,r,c)
+        elif (ch==3):
+            display(M,r,c)
+            saddle_point(M,r,c)
+
+        else:
+            print("Please enter the correct choice")
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#3 Matrix :-
+def accept_matrix(M) :
+    print("Enter the order of the Matrix (row,col) : ")
+    r = int(input("row = "))
+    c = int(input("col = "))
+    print("Enter the elements of the Matrix : \n")
+    for i in range(r) :
+       A = []
+       for j in range (c) :
+          A.append(int(input()))
+       M.append(A)
+    print("Matrix accepted successfully\n")
+
+
+def display_matrix(M,r,c): 
+   print("Matrix (%d,%d) : "%(r,c))
+   for i in range(r) :
+      print(end=' ')
+      for j in range(c):
+          print("%3d"%M[i][j],end=' ')
+      print("")	
+
+
+def addition_matrix(M1,M2,M3,r,c) :
+    for i in range(r) :
+        A = []        
+        for j in range(c): 
+           A.append(M1[i][j] + M2[i][j])
+        M3.append(A)
+
+def substraction_matrix(M1,M2,M3,r,c) :
+    for i in range(r) :
+        A = []        
+        for j in range(c): 
+           A.append(M1[i][j] - M2[i][j])
+        M3.append(A)
+
+
+def multiplication_matrix(M1,M2,M3,r1,c1,c2) :
+      for i in range(r1) :
+        A = []
+        for j in range(c2) : 
+            sum = 0
+            for k in range(c1) :
+                sum = sum + (M1[i][k] * M2[k][j])
+            A.append(sum)
+        M3.append(A)
+        
+def find_transpose_matrix(M,r,c,T) :
+    for i in range(r):
+        A = []
+        for j in range(c):
+           A.append(M[j][i])
+        T.append(A)
+def main():   
+   while True :
+       print("1: Accept Matrix");
+       print("2: Display Matrix");
+       print("3: Addition of Matrices");
+       print("4: Substraction of Matrices");
+       print("5: Multiplication of Matrices");
+       print("6: Transpose Matrix");
+       print("7: Exit");
+
+       ch = int(input("Enter your choice : "))
+       M3 = []       
+       if (ch == 7):
+           print ("End")
+           break
+       elif (ch==1):
+           M1 = []
+           M2 = []
+           print("Input First Matrix ")
+           accept_matrix(M1)
+           r1 = len(M1)
+           c1 = len(M1[0])
+           print("Input Second Matrix ")
+           accept_matrix(M2)
+           r2 = len(M2)
+           c2 = len(M2[0]) 
+       elif (ch==2):
+           print("First ",end=' ')
+           display_matrix(M1,r1,c1)
+           print("Second ",end =' ')
+           display_matrix(M2,r2,c2)	
+       elif (ch==3):
+           print("First ",end=' ')
+           display_matrix(M1,r1,c1)
+           print("Second ",end =' ')
+           display_matrix(M2,r2,c2)
+           if(r1 == r2 and c1 == c2) :
+               addition_matrix(M1,M2,M3,r1,c1)
+               print("Addition  ")
+               display_matrix(M3,r1,c1)
+           else :
+               print("Addition not possible (order not same)")
+
+       elif (ch==4):
+           print("\tFirst ",end=' ')
+           display_matrix(M1,r1,c1)
+           print("\tSecond ",end =' ')
+           display_matrix(M2,r2,c2)
+           if(r1 == r2 and c1 == c2) :
+               substraction_matrix(M1,M2,M3,r1,c1)
+               print("\tSubstraction  ")
+               display_matrix(M3,r1,c1)
+           else :
+               print("substraction not possible (order not same)")
+           
+       elif (ch==5):
+           print("First ",end=' ')
+           display_matrix(M1,r1,c1)
+           print("Second ",end =' ')
+           display_matrix(M2,r2,c2)
+           if(c1 == r2) :
+               multiplication_matrix(M1,M2,M3,r1,c1,c2)
+               print("Multiplication  ")
+               display_matrix(M3,r1,c2)
+           else :
+               print("Multiplication not possible ")
+       elif (ch==6):
+           print("First ",end=' ')
+           display_matrix(M1,r1,c1)
+           find_transpose_matrix(M1,r1,c1,M3);
+           print("Transpose  ",end=' ');
+           display_matrix(M3,r1,c1)
+       else :
+           print ("Wrong choice entered !! Try again")
+
+main()
+quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+#4 Ternary search:-
+def accept_array(A): 
+   n = int(input("Enter the total no. of student : "))
+   print("Input roll numbers in sorted order")
+   for i in range(n):
+      x = int(input("Enter the  roll no of student %d : "%(i+1)))
+      A.append(x)
+   print("Student Info accepted successfully\n\n")
+   return n
+
+def display_array(A,n): 
+   if(n == 0) :
+      print("No records in the database")
+   else :
+      print("Students  Array : ",end=' ')
+      for i in range(n) :
+         print("%d  "%A[i],end=' ')
+      print("\n")
+
+      
+def Ternary_Search(A,l,r,key)  :
+   if (r >= l) :
+      mid1 = l + int((r - l) / 3)
+      mid2 = r - int((r - l) / 3)
+      if (A[mid1] == key) :
+         return mid1
+      if (A[mid2] == key) :
+         return mid2
+      if (key < A[mid1]) :
+         return Ternary_Search(A,l, mid1 - 1, key)  
+      elif (key > A[mid2]) :
+         return Ternary_Search(A,mid2 + 1, r, key)  
+      else :
+         return Ternary_Search(A,mid1 + 1, mid2 - 1, key)        
+   return -1   
+
+
+def Main() :   
+   A = []
+   while True :
+      print ("1.Accept & Display Students info ")      
+      print ("2.Ternary Search")
+      print ("3.Exit")
+      ch = int(input("Enter your choice : "))
+      if (ch == 3):
+         print ("End of Program")
+         quit()
+      elif (ch==1):
+         A = []
+         n = accept_array(A)
+         display_array(A,n)
+      elif (ch==2):
+         X = int(input("Enter the roll_no to be searched : "))
+         flag  = Ternary_Search(A,0,n-1,X)
+         if(flag == -1) :
+            print("\t%d Roll no is not a member of the club\n"%X)
+         else :
+            print("\t%d Roll no is a member of the club stored at location %d"%(X,flag + 1))
+      else :
+           print ("Wrong choice entered !! Try again")
+
+
+Main()
+
+
+
+
+
+
+
+
+
+#5 Bubble sort and selection sort:-
+def accept_array(A): 
+   n = int(input("Enter the total no. of student : "))
+   for i in range(n):
+      x = float(input("Enter the  first year percentage of student %d : "%(i+1)))
+      A.append(x)
+   print("Array accepted successfully");
+
+def display_array(A): 
+   n = len(A)
+   if(n == 0) :
+      print("No records in the database")
+   else :
+      print("Array of FE Marks : ",end=' ')
+      for i in range(n) :
+         print("%.2f  "%A[i],end=' ')
+      print("\n");
+
+
+def Selection_sort(A) :
+   n = len(A)
+   for pos in range(n-1):
+      min_ind = pos
+      for i in range(pos + 1, n) :
+         if(A[i] < A[min_ind]) :
+            min_ind = i
+      temp = A[pos]
+      A[pos] = A[min_ind]
+      A[min_ind] = temp
+
+def Bubble_sort(A) :
+   n = len(A)
+   for Pass in range(1,n) :
+      for i in range(n-Pass) :
+         if(A[i] > A[i+1]) :
+            temp = A[i]
+            A[i] = A[i+1]
+            A[i+1] = temp
+      
+def Main() :   
+   A = []
+   while True :
+      print ("1.Accept & Display the FE Marks")
+      print ("2.Selection Sort Ascending order")
+      print ("3.Bubble sort Descending order and display top five scores")
+      print ("4.Exit")
+      ch = int(input("Enter your choice : "))
+      if (ch == 4):
+         print ("End")
+         quit()
+      elif (ch==1):
+         accept_array(A)
+         display_array(A)
+      elif (ch==2):
+         print("Marks before sorting")
+         display_array(A)
+         Selection_sort(A)
+         print("Marks after sorting")
+         display_array(A)
+      elif (ch==3):
+         print("Marks before sorting")
+         display_array(A)
+         Bubble_sort(A)
+         print("Marks after sorting")
+         display_array(A)
+         if(len(A) >= 5) :
+            print("Top Five Scores : ")
+            for i in range(5) :
+               print("\t%.2f"%A[i])
+         else :
+            print("Top Scorers : ")
+            for i in range(len(A)) :
+               print("\t%.2f"%A[i])                  
+      else :
+           print ("Wrong choice entered !! Try again")
+
+
+Main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#6 Bucket sort:-
+def accept_array(A):
+    n=int(input("Enter the total no. of students: "))
+    for i in range(n):
+        x=float(input("Enter the percentage of students of class 12th %d: "%(i+1)))
+        A.append(x)
+    print("Array accepted successfully\n\n");
+    
+def display_array(A):
+    n=len(A)
+    if(n==0):
+        print("\nNo Records in the database")
+    else:
+        print("Array of 12th class percentage scored by student: ",end=' ')
+        for i in range(n):
+            print("%.2f "%A[i],end=' ')
+        print("\n");
+        
+def find_max_digit(A,n):
+    max_element=max(A)
+    count=0
+    while(max_element>0):
+        count=count+1
+        max_element=max_element//10
+    return count
+
+def combinebucket(A,B):
+    c=0
+    for i in range(10):
+        for j in range(len(B[i])):
+            A[c]=B[i][j]
+            c=c+1
+
+def initialize_bucket(B):
+    for i in range(10):
+        T=[]
+        B.append(T)
+                       
+def Bucket_sort(A,n):
+    shift=1
+    keysize=find_max_digit(A,n)
+    for loop in range(keysize):
+        B=[]
+        initialize_bucket(B)
+        for i in range(n):
+            b_no=int((A[i]/shift)) % 10
+            B[b_no].append(A[i])
+        combinebucket(A,B)
+        shift=shift*10 
+                       
+def Main():
+    A=[]
+    while True:
+        print("1.Accept & display students FE marks")
+        print("2.Bucket sort ascending order and display top five scores")
+        print("3.Exit")
+        choice=int(input("Enter your choice: "))
+        if(choice==3):
+            print("End")
+            quit()
+        elif(choice==1):
+            A=[]
+            accept_array(A)
+            display_array(A)
+        elif(choice==2):
+            print("Marks before sorting")
+            display_array(A)
+            n=len(A)
+            Bucket_sort(A,n)
+            print("Marks after sorting")
+            display_array(A)
+            if(n>=5):
+                    print("Top five scores: ")
+                    for i in range(n-1,n-6,-1):
+                        print("\t%.2f"%A[i])
+            else:
+                print("Top scorers: ")
+                for i in range(n-1,-1,-1):
+                    print("\t%.2f"%A[i])
+        else:
+            print("Wrong choice entered!! Try again.")
+                       
+
+Main()
